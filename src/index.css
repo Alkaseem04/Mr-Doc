@@ -1,0 +1,329 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 210 79% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 199 91% 64%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 0 73% 66%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Enhanced dark theme with deeper blacks and better contrast */
+    --background: 220 20% 8%; /* Bluish-black gradient */
+    --foreground: 0 0% 98%; /* Near white text */
+
+    --card: 220 15% 12%; /* Dark card background */
+    --card-foreground: 0 0% 95%; /* Light card text */
+
+    --popover: 220 15% 12%; /* Dark popover */
+    --popover-foreground: 0 0% 95%; /* Light popover text */
+
+    --primary: 217 91% 60%; /* Vibrant blue for primary actions */
+    --primary-foreground: 0 0% 100%; /* White text on primary */
+
+    --secondary: 215 28% 17%; /* Darker blue for secondary elements */
+    --secondary-foreground: 0 0% 90%; /* Light text on secondary */
+
+    --muted: 220 10% 15%; /* Muted dark background */
+    --muted-foreground: 0 0% 70%; /* Muted text color */
+
+    --accent: 199 89% 48%; /* Teal accent color */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
+
+    --destructive: 0 84% 60%; /* Red for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White text on destructive */
+
+    --border: 220 10% 20%; /* Dark border */
+    --input: 220 10% 20%; /* Dark input borders */
+    --ring: 217 91% 60%; /* Ring color matching primary */
+
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 10% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 220 10% 20%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Twinkling stars background for dark mode */
+  .dark body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 160px 30px, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 200px 90px, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 250px 50px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 300px 20px, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 350px 70px, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 400px 40px, rgba(255,255,255,0.7), transparent);
+    background-size: 400px 200px;
+    animation: twinkle 4s ease-in-out infinite;
+    z-index: -1;
+    opacity: 0.12; /* Subtle opacity for non-intrusive effect */
+  }
+}
+
+@layer components {
+  .health-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .health-card {
+    @apply bg-card rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300 border border-border;
+  }
+  
+  .health-input {
+    @apply w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-300 bg-background text-foreground;
+  }
+  
+  .health-button {
+    @apply px-6 py-3 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 shadow-md hover:shadow-lg;
+  }
+  
+  .health-button-secondary {
+    @apply px-6 py-3 bg-secondary text-secondary-foreground rounded-full hover:bg-secondary/90 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 shadow-md hover:shadow-lg;
+  }
+  
+  .health-button-outline {
+    @apply px-6 py-3 border-2 border-primary text-primary bg-transparent rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 shadow-md hover:shadow-lg;
+  }
+  
+  .health-button-destructive {
+    @apply px-6 py-3 bg-destructive text-destructive-foreground rounded-full hover:bg-destructive/90 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 shadow-md hover:shadow-lg;
+  }
+  
+  .health-pill {
+    @apply px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm font-medium transition-all duration-300 hover:bg-accent/90;
+  }
+  
+  /* Enhanced navigation link styles */
+  .nav-link {
+    @apply relative transition-all duration-300 hover:text-primary;
+  }
+  
+  .nav-link::after {
+    @apply content-[''] absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+  
+  .nav-link:hover::after, .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  /* Card hover effects */
+  .hover-card {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border border-border;
+  }
+  
+  /* Glass morphism effect */
+  .glass-effect {
+    @apply bg-background/80 backdrop-blur-md border border-border shadow-xl;
+  }
+  
+  /* Form elements */
+  .form-label {
+    @apply block text-sm font-medium mb-1 text-foreground;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors;
+  }
+  
+  .form-error {
+    @apply text-destructive text-sm mt-1 flex items-center;
+  }
+  
+  .form-success {
+    @apply text-accent text-sm mt-1 flex items-center;
+  }
+  
+  /* Focus visible utility for accessibility */
+  .focus-visible {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+  
+  /* Resources page specific styles for dark mode */
+  .dark .resource-card {
+    @apply bg-card text-foreground;
+  }
+  
+  .dark .resource-card h2 {
+    @apply text-foreground;
+  }
+  
+  .dark .resource-card p {
+    @apply text-muted-foreground;
+  }
+  
+  .dark .resource-content {
+    @apply text-foreground;
+  }
+  
+  .dark .resource-content p {
+    @apply text-foreground;
+  }
+  
+  .dark .resource-content h1,
+  .dark .resource-content h2,
+  .dark .resource-content h3,
+  .dark .resource-content h4,
+  .dark .resource-content h5,
+  .dark .resource-content h6 {
+    @apply text-foreground;
+  }
+  
+  .dark .resource-content a {
+    @apply text-primary;
+  }
+  
+  .dark .resource-content blockquote {
+    @apply border-l-4 border-primary bg-muted/50;
+  }
+  
+  .dark .resource-content code {
+    @apply bg-muted text-foreground;
+  }
+  
+  .dark .resource-content pre {
+    @apply bg-muted text-foreground;
+  }
+}
+
+/* Enhanced Animation Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(59, 130, 246, 0.6); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.8); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.12; }
+  50% { opacity: 0.25; }
+}
+
+/* Animation Classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background: linear-gradient(90deg, #1E88E5, #4FC3F7, #1E88E5);
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s ease-out;
+}
+
+.animate-twinkle {
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+/* Page transition animations */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Ensure proper font throughout the application */
+body {
+  font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
